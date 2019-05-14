@@ -5,7 +5,7 @@
     <div formGroupName="fullName">
       <div class="form-group row">
         <label class="col-2 col-form-label">Nombre</label>
-        <div class="col-8">
+        <div class="col-md-8">
           <input
             class="form-control"
             [ngClass]="{
@@ -52,7 +52,7 @@
       </div>
       <div class="form-group row">
         <label class="col-2 col-form-label">Apellido</label>
-        <div class="col-8">
+        <div class="col-md-8">
           <input
             class="form-control"
             [ngClass]="{
@@ -100,11 +100,11 @@
           class="form-control"
           [ngClass]="{
             'is-invalid':
-              formData.controls['name'].invalid &&
-              formData.controls['name'].touched,
+              formData.get('name').invalid &&
+              formData.get('name').touched,
             'is-valid':
-              formData.controls['name'].valid &&
-              formData.controls['name'].touched
+              formData.get('name').valid &&
+              formData.get('name').touched
           }"
           type="text"
           placeholder="Nombre"
@@ -114,8 +114,8 @@
           class="alert alert-danger mt-2"
           role="alert"
           *ngIf="
-            formData.controls['name'].errors && formData.controls['name'].errors['required'] &&
-            formData.controls['name'].touched
+            formData.get('name').errors && formData.get('name').errors['required'] &&
+            formData.get('name').touched
           "
         >
           Este campo es requerido
@@ -124,12 +124,12 @@
           class="alert alert-danger mt-2"
           role="alert"
           *ngIf="
-            formData.controls['name'].errors && formData.controls['name'].errors['minlength'] &&
-            formData.controls['name'].touched
+            formData.get('name').errors && formData.get('name').errors['minlength'] &&
+            formData.get('name').touched
           "
         >
           Este campo debe tener al menos
-          {{ formData.controls["name"].errors["minlength"]["requiredLength"] }}
+          {{ formData.get("name").errors["minlength"]["requiredLength"] }}
           caracteres
         </div>
       </div>
@@ -141,11 +141,11 @@
           class="form-control"
           [ngClass]="{
             'is-invalid':
-              formData.controls['lastName'].invalid &&
-              formData.controls['lastName'].touched,
+              formData.get('lastName').invalid &&
+              formData.get('lastName').touched,
             'is-valid':
-              formData.controls['lastName'].valid &&
-              formData.controls['lastName'].touched
+              formData.get('lastName').valid &&
+              formData.get('lastName').touched
           }"
           type="text"
           placeholder="Apellido"
@@ -155,8 +155,8 @@
           class="alert alert-danger mt-2"
           role="alert"
           *ngIf="
-            formData.controls['lastName'].errors && formData.controls['lastName'].errors['required'] &&
-            formData.controls['lastName'].touched
+            formData.get('lastName').errors && formData.get('lastName').errors['required'] &&
+            formData.get('lastName').touched
           "
         >
           Este campo es requerido
@@ -171,11 +171,9 @@
         class="form-control"
         [ngClass]="{
           'is-invalid':
-            formData.controls['email'].invalid &&
-            formData.controls['email'].touched,
+            formData.get('email').invalid && formData.get('email').touched,
           'is-valid':
-            formData.controls['email'].valid &&
-            formData.controls['email'].touched
+            formData.get('email').valid && formData.get('email').touched
         }"
         type="email"
         placeholder="Correo electrónico"
@@ -185,9 +183,9 @@
         class="alert alert-danger mt-2"
         role="alert"
         *ngIf="
-          formData.controls['email'].errors &&
-          formData.controls['email'].errors['required'] &&
-          formData.controls['email'].touched
+          formData.get('email').errors &&
+          formData.get('email').errors['required'] &&
+          formData.get('email').touched
         "
       >
         Este campo es requerido
@@ -196,9 +194,9 @@
         class="alert alert-danger mt-2"
         role="alert"
         *ngIf="
-          formData.controls['email'].errors &&
-          formData.controls['email'].errors['pattern'] &&
-          formData.controls['email'].touched
+          formData.get('email').errors &&
+          formData.get('email').errors['pattern'] &&
+          formData.get('email').touched
         "
       >
         Este campo debe contener un correo válido
@@ -212,19 +210,16 @@
         class="form-control mb-2"
         [ngClass]="{
           'is-invalid':
-            formData.controls['hobbies'].controls[i].invalid &&
-            formData.controls['hobbies'].controls[i].touched,
+            formData.get('hobbies').controls[i].invalid &&
+            formData.get('hobbies').controls[i].touched,
           'is-valid':
-            formData.controls['hobbies'].controls[i].valid &&
-            formData.controls['hobbies'].controls[i].touched
+            formData.get('hobbies').controls[i].valid &&
+            formData.get('hobbies').controls[i].touched
         }"
         type="text"
         placeholder="Hobby"
         [formControlName]="i"
-        *ngFor="
-          let hobby of formData.controls['hobbies'].controls;
-          let i = index
-        "
+        *ngFor="let hobby of formData.get('hobbies')['controls']; let i = index"
       />
     </div>
     <div class="col-md-2">
@@ -244,11 +239,10 @@
         class="form-control"
         [ngClass]="{
           'is-invalid':
-            formData.controls['username'].invalid &&
-            formData.controls['username'].touched,
+            formData.get('username').invalid &&
+            formData.get('username').touched,
           'is-valid':
-            formData.controls['username'].valid &&
-            formData.controls['username'].touched
+            formData.get('username').valid && formData.get('username').touched
         }"
         type="text"
         placeholder="Usuario"
@@ -258,9 +252,9 @@
         class="alert alert-danger mt-2"
         role="alert"
         *ngIf="
-          formData.controls['username'].errors &&
-          formData.controls['username'].errors['required'] &&
-          formData.controls['username'].touched
+          formData.get('username').errors &&
+          formData.get('username').errors['required'] &&
+          formData.get('username').touched
         "
       >
         Este campo es requerido
@@ -269,9 +263,9 @@
         class="alert alert-danger mt-2"
         role="alert"
         *ngIf="
-          formData.controls['username'].errors &&
-          formData.controls['username'].errors['existsUsername'] &&
-          formData.controls['username'].touched
+          formData.get('username').errors &&
+          formData.get('username').errors['existsUsername'] &&
+          formData.get('username').touched
         "
       >
         Este usuario ya está tomado
@@ -285,11 +279,10 @@
         class="form-control"
         [ngClass]="{
           'is-invalid':
-            formData.controls['password1'].invalid &&
-            formData.controls['password1'].touched,
+            formData.get('password1').invalid &&
+            formData.get('password1').touched,
           'is-valid':
-            formData.controls['password1'].valid &&
-            formData.controls['password1'].touched
+            formData.get('password1').valid && formData.get('password1').touched
         }"
         type="password"
         placeholder="Contraseña"
@@ -299,9 +292,9 @@
         class="alert alert-danger mt-2"
         role="alert"
         *ngIf="
-          formData.controls['password1'].errors &&
-          formData.controls['password1'].errors['required'] &&
-          formData.controls['password1'].touched
+          formData.get('password1').errors &&
+          formData.get('password1').errors['required'] &&
+          formData.get('password1').touched
         "
       >
         Este campo es requerido
@@ -315,11 +308,10 @@
         class="form-control"
         [ngClass]="{
           'is-invalid':
-            formData.controls['password2'].invalid &&
-            formData.controls['password2'].touched,
+            formData.get('password2').invalid &&
+            formData.get('password2').touched,
           'is-valid':
-            formData.controls['password2'].valid &&
-            formData.controls['password2'].touched
+            formData.get('password2').valid && formData.get('password2').touched
         }"
         type="password"
         placeholder="Confirmar contraseña"
@@ -329,9 +321,9 @@
         class="alert alert-danger mt-2"
         role="alert"
         *ngIf="
-          formData.controls['password2'].errors &&
-          formData.controls['password2'].errors['required'] &&
-          formData.controls['password2'].touched
+          formData.get('password2').errors &&
+          formData.get('password2').errors['required'] &&
+          formData.get('password2').touched
         "
       >
         Este campo es requerido
@@ -340,9 +332,9 @@
         class="alert alert-danger mt-2"
         role="alert"
         *ngIf="
-          formData.controls['password2'].errors &&
-          formData.controls['password2'].errors['passwordInvalid'] &&
-          formData.controls['password2'].touched
+          formData.get('password2').errors &&
+          formData.get('password2').errors['passwordInvalid'] &&
+          formData.get('password2').touched
         "
       >
         Las contraseñas deben ser iguales
